@@ -1,4 +1,5 @@
 // alunos: Ricardo S. O. Leite ; Gliter
+//         Guilherme Fernando Ferreira
 
 imgSrc=imread('./img/source.jpg');
 imgSrc=rgb2gray(imgSrc);
