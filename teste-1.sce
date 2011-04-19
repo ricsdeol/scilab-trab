@@ -1,3 +1,5 @@
+// alunos: Ricardo S. O. Leite ; Gliter
+
 imgSrc=imread('./img/source.jpg');
 imgSrc=rgb2gray(imgSrc);
 [r_imgSrc c_imgSrc]=size(imgSrc);
@@ -41,3 +43,5 @@ img8=rgb2gray(img8);
 img9=imread('./img/9.jpg');
 img9=rgb2gray(img9);
 [r_img9 c_img9]=size(img9);
+
+
