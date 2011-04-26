@@ -1,5 +1,8 @@
-// alunos: Ricardo S. O. Leite ; Gliter
-//         Guilherme Fernando Ferreira
+//Alunos: Ricardo S. O. Leite ;
+//        Guilherme Fernando Ferreira;
+//Professor: Will
+//Trabalho: processamento de uma lista de chamadas
+//Lingagem: Scilab ( v5.3 ) utilizando SIVP (v0.5.3-3)
 
 imgSrc=imread('./img/source.jpg');
 imgSrc=rgb2gray(imgSrc);
@@ -45,4 +48,50 @@ img9=imread('./img/9.jpg');
 img9=rgb2gray(img9);
 [r_img9 c_img9]=size(img9);
 
+//Retorna se a imgBase ( somente a região de comparação com tamanho igual a imgTemplete) com imgTamplate
+function diffImg=diffImage(imgBase, imgTemplate)
+    fatorDiferenca = 50;
+    porcetagemIgualdade = 0.8; 
+    
+    subM = imgBase - imgTemplate;
+    
+    imgDiff = subM < fatorDiferenca;
+    
+    [r c]=size(imgDiff);
+    
+    if length(find(imgDiff)) > r*c*porcetagemIgualdade then
+        diffImg = 255;
+    else
+        diffImg = 0;
+    end 
 
+endfunction
+
+function [imgResultadoBusca]=searchImg(imgBase, imgTemplate)
+    [r_imgBase c_imgBase]=size(imgBase);
+    [r_imgTemplate c_imgTemplate]=size(imgTemplate);
+    
+    r_finalImgBase= r_imgBase - r_imgTemplate;
+    c_finalImgBase= c_imgBase - c_imgTemplate;
+    
+    imgResultadoBusca=zeros(r_finalImgBase,c_finalImgBase);
+
+    for i= 1:r_finalImgBase
+        for j=1:c_finalImgBase
+            // imgBase(i:r_imgTemplate,j:c_imgTemplate)   faz com que imagem fique do tamanho a da imgTemplate limitando da posição atual i e j   até a quantidade de linhas e colunas do template
+           imgResultadoBusca(i,j)=diffImage( imgBase(i:r_imgTemplate,j:c_imgTemplate), imgTemplate);
+        end
+    end
+    
+endfunction
+
+r_finalImgSrc = r_imgSrc - r_img0;
+c_finalImgSrc = c_imgSrc - c_img0;
+
+imgResultadoBusca=zeros(r_finalImgSrc,c_finalImgSrc);
+
+    for i= 1:r_finalImgSrc
+        for j=1:c_finalImgSrc
+            diffImage( imgSrc(i:r_img0,j:c_img0), img0);
+        end
+    end
