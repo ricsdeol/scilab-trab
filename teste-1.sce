@@ -57,7 +57,7 @@ function diffImg=diffImage(imgBase, imgTemplate)
     
     imgDiff = subM < fatorDiferenca;
     
-    [r c]=size(imgDiff);
+    [r, c]=size(imgDiff);
     
     if length(find(imgDiff)) > r*c*porcetagemIgualdade then
         diffImg = 255;
@@ -78,20 +78,21 @@ function [imgResultadoBusca]=searchImg(imgBase, imgTemplate)
 
     for i= 1:r_finalImgBase
         for j=1:c_finalImgBase
-            // imgBase(i:r_imgTemplate,j:c_imgTemplate)   faz com que imagem fique do tamanho a da imgTemplate limitando da posição atual i e j   até a quantidade de linhas e colunas do template
-           imgResultadoBusca(i,j)=diffImage( imgBase(i:r_imgTemplate,j:c_imgTemplate), imgTemplate);
+           imgResultadoBusca(i,j)=diffImage( imgBase(i:r_imgTemplate+i-1,j:c_imgTemplate+j-1), imgTemplate);
         end
     end
-    
 endfunction
 
-r_finalImgSrc = r_imgSrc - r_img0;
-c_finalImgSrc = c_imgSrc - c_img0;
+img = searchImg(imgSrc,img0);
+disp(img);
 
-imgResultadoBusca=zeros(r_finalImgSrc,c_finalImgSrc);
+//r_finalImgSrc = r_imgSrc - r_img0;
+//c_finalImgSrc = c_imgSrc - c_img0;
 
-    for i= 1:r_finalImgSrc
-        for j=1:c_finalImgSrc
-            diffImage( imgSrc(i:r_img0,j:c_img0), img0);
-        end
-    end
+//imgResultadoBusca=zeros(r_finalImgSrc,c_finalImgSrc);
+
+//for i= 1:r_finalImgSrc
+//    for j=1:c_finalImgSrc
+//        diffImage( imgSrc(i:r_img0+i-1,j:c_img0+j-1), img0);
+//    end
+//end
